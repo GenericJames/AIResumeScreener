@@ -1,0 +1,12 @@
+{
+  "run_id": "1",
+  "model": "sentence-transformers/all-MiniLM-L6-v2",
+  "artifact_version": 1,
+  "paths": {
+    "resume_text": "resume.txt",
+    "resume_units": "artifacts/1/resume_units.jsonl",
+    "declared_skills": "artifacts/1/declared_skills.jsonl",
+    "jd_text": "jd_text_file",
+    "jd_lines": "jd_lines_file"
+  }
+}

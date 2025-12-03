@@ -1,0 +1,16 @@
+Python
+Backend Development
+Docker
+Kubernetes
+RESTful APIs
+AWS Cloud
+CI/CD Pipelines
+Distributed Systems
+Git
+Code Reviews
+Clean Code
+Testing
+PostgreSQL
+MySQL
+Performance Optimization
+Scalability

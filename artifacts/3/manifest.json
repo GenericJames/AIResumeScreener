@@ -1,0 +1,21 @@
+{
+  "run_id": "3",
+  "model": "sentence-transformers/all-MiniLM-L6-v2",
+  "rubric": {
+    "align": 0.35,
+    "skills": 0.25,
+    "impact": 0.2,
+    "structure": 0.1,
+    "readability": 0.05,
+    "ats": 0.05
+  },
+  "artifact_version": 1,
+  "paths": {
+    "resume_text": "resume.txt",
+    "resume_units": "artifacts/3/resume_units.jsonl",
+    "declared_skills": "artifacts/3/declared_skills.jsonl",
+    "jd_text": "jd_experience.txt",
+    "jd_lines": "artifacts/3/jd_lines.jsonl",
+    "jd_skills": "artifacts/3/canonical_skills.jsonl"
+  }
+}
