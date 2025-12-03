@@ -1,24 +1,36 @@
 import json, os, re
  
-def store_data(id): 
-    with open("resume.txt","r") as file:
-        text = file.read()
-        data = split_into_units_and_skills(text)
-    with open("jd_experience.txt","r") as file:
-        lines = []
-        for line in file:
-            lines.append(line.strip())
+def store_data(id,resume_file,jd_exp_file,jd_skills_file):
+    print("resume_file: ",resume_file) 
+    resume_file.stream.seek(0)
+    text = resume_file.read().decode("utf-8")
+    data = split_into_units_and_skills(text)
+    print("data: ",text)
 
-    canonical_skills = [] 
-    for skill in open("jd_skills.txt", "r"):
-        canonical_skills.append(skill.strip())
+    jd_exp_file.stream.seek(0)
+    jd_exp_text = jd_exp_file.read().decode("utf-8")
+    
+    experience_lines = [
+    line.strip()
+    for line in jd_exp_text.splitlines()
+    if line.strip()
+]
+    # Convert JD skills file contents to list of skills
+    jd_skills_file.stream.seek(0)
+    jd_skills_text = jd_skills_file.read().decode("utf-8")
+    canonical_skills = [
+        line.strip()
+        for line in jd_skills_text.splitlines()
+        if line.strip()
+]
+
     print(canonical_skills)
 
     os.makedirs(f"artifacts/{id}", exist_ok=True)
     write_jsonl_runits(f"artifacts/{id}/resume_units.jsonl",data[0])
     write_jsonl_skills(f"artifacts/{id}/declared_skills.jsonl",data[1])
     write_jsonl_skills(f"artifacts/{id}/canonical_skills.jsonl", canonical_skills)
-    write_jsonl_jd(f"artifacts/{id}/jd_lines.jsonl",lines)
+    write_jsonl_jd(f"artifacts/{id}/jd_lines.jsonl",experience_lines)
     save_manifest(f"artifacts/{id}","resume.txt",f"artifacts/{id}/resume_units.jsonl",f"artifacts/{id}/declared_skills.jsonl","jd_experience.txt",f"artifacts/{id}/jd_lines.jsonl", f"artifacts/{id}/canonical_skills.jsonl")
     
 def write_jsonl_runits(path, rows):
@@ -41,10 +53,9 @@ def save_manifest(run_path, resume_text_file, resume_units_file, declared_skills
         "run_id": os.path.basename(run_path),
         "model": "sentence-transformers/all-MiniLM-L6-v2",
         "rubric": {
-            "alignment": 0.40,
-            "skills_evidence": 0.30,
-            "impact": 0.20,
-            "structure_format": 0.10,
+            "alignment": 0.55,
+            "skills_evidence": 0.35,
+            "format": .10
         },
         "artifact_version": 1,
         "paths": {

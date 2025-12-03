@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Results</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='results.css') }}">
+    <script defer src="{{ url_for('static', filename='results.js') }}"></script>
+</head>
+<body>
+
+<h1>Results for Run {{ run_id }}</h1>
+
+{% if result %}
+
+    <!-- ================= OVERALL SCORE ================= -->
+    <section>
+        <h2>Overall Score</h2>
+
+        <p><strong>{{ (result.overall_score * 100) | round(1) }}%</strong></p>
+
+        <div class="score-bar" style="margin-top: 10px;">
+            <div class="score-bar-fill"
+                 data-score="{{ result.overall_score * 100 }}"></div>
+        </div>
+    </section>
+
+    <!-- ================= RUBRIC BREAKDOWN ================= -->
+    <section>
+        <h2>Rubric Breakdown</h2>
+
+        <!-- Alignment -->
+        <div class="score-row">
+            <div class="score-label">
+                Alignment
+                <span class="score-value">
+                    {{ (result.alignment_score * 100) | round(1) }}%
+                </span>
+            </div>
+            <div class="score-bar">
+                <div class="score-bar-fill"
+                     data-score="{{ result.alignment_score * 100 }}"></div>
+            </div>
+        </div>
+
+        <!-- Skills Evidence -->
+        <div class="score-row">
+            <div class="score-label">
+                Skills Evidence
+                <span class="score-value">
+                    {{ (result.skills_evidence_score * 100) | round(1) }}%
+                </span>
+            </div>
+            <div class="score-bar">
+                <div class="score-bar-fill"
+                     data-score="{{ result.skills_evidence_score * 100 }}"></div>
+            </div>
+        </div>
+
+        <!-- Format -->
+        <div class="score-row">
+            <div class="score-label">
+                Format
+                <span class="score-value">
+                    {{ (result.structure_format_score * 100) | round(1) }}%
+                </span>
+            </div>
+            <div class="score-bar">
+                <div class="score-bar-fill"
+                     data-score="{{ result.structure_format_score * 100 }}"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= COMMENTS ================= -->
+    {% if result.comments %}
+    <section>
+        <h2>Comments</h2>
+        <ul>
+            {% for comment in result.comments %}
+                <li>{{ comment }}</li>
+            {% endfor %}
+        </ul>
+    </section>
+    {% endif %}
+
+{% else %}
+    <p>No results available for this run.</p>
+{% endif %}
+
+<p class="back-link">
+    <a href="{{ url_for('index') }}">Back to form</a>
+</p>
+
+</body>
+</html>

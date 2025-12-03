@@ -1,0 +1,10 @@
+  Build and maintain backend services in Python.
+  Deploy containerized applications using Docker and Kubernetes.
+  Design and maintain RESTful APIs.
+  Work with AWS cloud services in production environments.
+  Implement and maintain CI/CD pipelines.
+  Monitor and troubleshoot distributed systems.
+  Collaborate with cross-functional teams using Git and code reviews.
+  Write clean, maintainable, and testable code.
+  Use relational databases such as PostgreSQL or MySQL.
+  Improve performance and scalability of backend systems.

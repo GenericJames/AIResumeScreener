@@ -1,7 +1,0 @@
-{"text": "Backend Engineer specializing in Python, Docker, and AWS-based microservices.", "section": "summary", "strong_verb": false, "has_metric": false, "length_words": 9}
-{"text": "Backend Engineer â€“ CloudScale Inc. | 2022â€“Present", "section": "experience", "strong_verb": false, "has_metric": false, "length_words": 7}
-{"text": "Built and maintained backend services in Python, deploying via Docker and Kubernetes on AWS.", "section": "experience", "strong_verb": true, "has_metric": false, "length_words": 14}
-{"text": "Implemented CI/CD pipelines with GitHub Actions, reducing deployment time by 40%.", "section": "experience", "strong_verb": true, "has_metric": true, "length_words": 11}
-{"text": "Designed scalable REST APIs with PostgreSQL; improved query latency by 18%.", "section": "experience", "strong_verb": true, "has_metric": true, "length_words": 11}
-{"text": "Distributed Monitoring Tool â€“ Developed a Prometheus-based monitoring system for microservices, improving uptime by 15%.", "section": "projects", "strong_verb": false, "has_metric": true, "length_words": 15}
-{"text": "B.S. Computer Science, Arizona State University", "section": "education", "strong_verb": false, "has_metric": false, "length_words": 6}

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Resume Scoring Frontend</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<h1>Resume Scoring Interface</h1>
+
+<form action="{{ url_for('submit') }}" method="POST" enctype="multipart/form-data">
+
+    <!-- Run ID Section -->
+    <section>
+        <h2>Select Resume Run</h2>
+        <section id="existing_resume_section">    
+            <label for="existing_run_id">Existing Runs:</label>
+            <select id="existing_run_id" name="existing_run_id">
+                <option value="">Select Existing Run ID</option>
+                {% for run_id in run_ids %}
+                    <option value="{{ run_id }}">{{ run_id }}</option>
+                {% endfor %}
+            </select>
+        </section>
+
+        <!-- New Run ID -->
+        <section id="add_new_run_section" style="margin-top: 15px;">   
+            <label for="new_run_id">New Run:</label>
+            <input type="text" id="new_run_id" name="new_run_id" placeholder="Enter new Run ID">
+        </section>
+        <button type="button" id="create_run_btn">New</button>
+    </section>
+
+    <hr>
+    <section id = "file-upload-section">
+        <!-- Resume Section -->
+        <section>
+            <h2>Resume File</h2>
+            <label for="resume_file">Upload Resume (.txt):</label>
+            <input type="file" id="resume_file" name="resume_file" accept=".txt">
+        </section>
+
+        <hr>
+
+        <!-- Job Description Experience -->
+        <section>
+            <h2>Job Description - Experience File</h2>
+            <label for="jd_experience_file">Upload Experience Section (.txt):</label>
+            <input type="file" id="jd_experience_file" name="jd_experience_file" accept=".txt">
+        </section>
+
+        <hr>
+
+        <!-- Job Description Skills -->
+        <section>
+            <h2>Job Description - Skills File</h2>
+            <label for="jd_skills_file">Upload Skills Section (.txt):</label>
+            <input type="file" id="jd_skills_file" name="jd_skills_file" accept=".txt">
+        </section>
+
+        <hr>
+
+        <!-- Options -->
+        <section>
+            <h2>Options</h2>
+
+            <!-- Harshness slider -->
+            <label for="harshness">Harshness Level:</label>
+            <input type="range" id="harshness" name="harshness" min="1" max="10" value="5">
+        </section>
+
+        <hr>
+
+        <!-- Rubric Section -->
+        <section>
+            <h2>Rubric Weights</h2>
+
+            <label for="rubric_alignment">Alignment Weight:</label>
+            <input type="number" id="rubric_alignment" name="rubric_alignment"
+                value="0.55" min="0" max="1" step="0.01" required>
+
+            <label for="rubric_skills">Skills Evidence Weight:</label>
+            <input type="number" id="rubric_skills" name="rubric_skills"
+                value="0.35" min="0" max="1" step="0.01" required>
+
+            <label for="rubric_format">Format Weight:</label>
+            <input type="number" id="rubric_format" name="rubric_format"
+                value="0.10" min="0" max="1" step="0.01" required>
+        </section>
+
+        <hr>
+    </section>
+    <!-- Submit -->
+    <button type="submit">Submit</button>
+
+    <p id="please-wait" style="display:none; margin-top:10px; color:#444;">
+        Please wait, this may take a minute...
+    </p>
+
+</form>
+
+
+<script src="{{ url_for('static', filename='app.js') }}"></script>
+
+</body>
+</html>

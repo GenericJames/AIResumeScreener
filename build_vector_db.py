@@ -5,6 +5,7 @@ import hashlib
 import json
 
 def build_db(manifest):
+    print("Initializing Database...")
     with open(manifest, "r") as f:
         manifest_data = json.load(f)
 
@@ -44,6 +45,7 @@ def build_db(manifest):
     canonical_skills_path = manifest_data["paths"]["jd_skills"]
     run_id = manifest_data["run_id"]
 
+    print("Building Resume Experince Embeddings...")
     i = 0
     for unit in open(resume_units_path):
         obj = json.loads(unit)
@@ -70,6 +72,7 @@ def build_db(manifest):
         return f"Evidence of {skill} demonstrated through real-world projects, responsibilities, or achievements."
 
     i = 0
+    print("Building Skills Embeddings...")
     for skill in open(declared_skills_path):
         obj = json.loads(skill)
         skill_name = obj["text"]
@@ -81,6 +84,7 @@ def build_db(manifest):
             metadatas=[{"name": skill_name}])
         i += 1
 
+    print("Building Resume Experince Embeddings...")
     i = 0
     for skill in open(canonical_skills_path):
         obj = json.loads(skill)
@@ -94,6 +98,7 @@ def build_db(manifest):
             metadatas=[{"name": skill_name}])
         i += 1
     
+    print("Building JD Requirement Embeddings...")
     i = 0
     for jd_line in open(jd_lines_path):
         obj = json.loads(unit)
@@ -107,9 +112,6 @@ def build_db(manifest):
             metadatas=[{"index": 2}]
         )
         i += 1
-    
-
-        
     
 if __name__ == "__main__":
     #build_db()

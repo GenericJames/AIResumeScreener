@@ -2,8 +2,11 @@ import chromadb
 from sentence_transformers import SentenceTransformer
 from chromadb.config import Settings
 import json
+import os
 
 def score_resume(run_path):
+    print("Scoring resume...")
+    print("RUN PATH: ",run_path)
     manifest = f"{run_path}/manifest.json"
     def best_alignment_for_jd_line(jd_text, k=5):
         q_embed = embed(jd_text)
@@ -121,6 +124,27 @@ def score_resume(run_path):
     print(f"Skills Evidence Score: {skills_score}") 
     print(f"Structure & Format Score: {structure_score}")
 
+    overall_score = (alignment_score * RUBRIC["alignment"] +
+                     skills_score * RUBRIC["skills_evidence"] +
+                     structure_score * RUBRIC["format"])
+    
+    print(f"Overall Resume Score: {overall_score}")
+
+    result = {
+        "run_id": manifest_data["run_id"],
+        "alignment_score": round(alignment_score, 3),
+        "skills_evidence_score": round(skills_score, 3),
+        "structure_format_score": round(structure_score, 3),
+        "overall_score": round(overall_score, 3),
+    }
+    path = f"{run_path}/final_score.json"
+    with open(path, "w", encoding="utf-8") as f:
+        f.write(json.dumps(result, ensure_ascii=False) + "\n")
+    
+
+    print("Final Result: ", result)
+    return result
+
 def score_alignment(alignments, cover_thresh=0.55, w_mean=0.85, w_cov=0.15):
     if not alignments:
         return 0.0
@@ -140,7 +164,7 @@ def score_skill_evidence(matches, total_canonical_skills, cover_thresh=0.55, alp
         print(f"Match {i+1}: Canonical Skill: {match['canonical_skill']}, Declared Skill: {match['declared_skill']}, Similarity: {match['similarity']}, Evidence Score: {match['evidence']['evidence_score']}\n")
     if not total_canonical_skills or total_canonical_skills <= 0:
         return 0.0
-
+    
     if not matches:
         return 0.0
 
@@ -152,6 +176,7 @@ def score_skill_evidence(matches, total_canonical_skills, cover_thresh=0.55, alp
         ev = float(m["evidence"]["evidence_score"])
         ev = max(0.0, min(1.0, ev))
         evs.append(ev)
+
     #avg
     quality = sum(evs) / len(evs)
     quality = (quality+1)/2 # be more generous for it existing, less focus on structure

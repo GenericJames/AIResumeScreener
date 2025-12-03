@@ -1,0 +1,17 @@
+SUMMARY
+Backend Engineer specializing in Python, Docker, and AWS-based microservices.
+
+TECHNICAL SKILLS
+Python • RESTful APIs • Docker • Kubernetes • AWS (EC2, Lambda, S3) • CI/CD (GitHub Actions) • PostgreSQL • MySQL • Git • Code Reviews
+
+EXPERIENCE
+Backend Engineer – CloudScale Inc. | 2022–Present
+Built and maintained backend services in Python, deploying via Docker and Kubernetes on AWS.
+Implemented CI/CD pipelines with GitHub Actions, reducing deployment time by 40%.
+Designed scalable REST APIs with PostgreSQL; improved query latency by 18%.
+
+PROJECTS
+Distributed Monitoring Tool – Developed a Prometheus-based monitoring system for microservices, improving uptime by 15%.
+
+EDUCATION
+B.S. Computer Science, Arizona State University

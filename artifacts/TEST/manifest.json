@@ -1,0 +1,18 @@
+{
+  "run_id": "TEST",
+  "model": "sentence-transformers/all-MiniLM-L6-v2",
+  "rubric": {
+    "alignment": 0.55,
+    "skills_evidence": 0.35,
+    "format": 0.1
+  },
+  "artifact_version": 1,
+  "paths": {
+    "resume_text": "resume.txt",
+    "resume_units": "artifacts/TEST/resume_units.jsonl",
+    "declared_skills": "artifacts/TEST/declared_skills.jsonl",
+    "jd_text": "jd_experience.txt",
+    "jd_lines": "artifacts/TEST/jd_lines.jsonl",
+    "jd_skills": "artifacts/TEST/canonical_skills.jsonl"
+  }
+}
